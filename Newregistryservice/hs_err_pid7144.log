@@ -1,0 +1,234 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 134217728 bytes for Failed to commit area from 0x0000000081c00000 to 0x0000000089c00000 of length 134217728.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (./open/src/hotspot/os/windows/os_windows.cpp:3315), pid=7144, tid=20664
+#
+# JRE version:  (14.0.2+12) (build )
+# Java VM: OpenJDK 64-Bit Server VM (14.0.2+12-46, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=59743 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.jmx.enabled=true -Dspring.application.admin.enabled=true -Xverify:none -XX:TieredStopAtLevel=1 -Dspring.boot.project.name=registryservice -Dfile.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages -agentpath:C:/PROGRA~1/DYNATR~1/oneagent/agent/bin/120516~1.202/WINDOW~2/oneagentloader.dll=loglevelcon=none,tenant=drp47759,tenanttoken=Bq1PsgNiI3MgzSky,datastorage=C:\ProgramData\dynatrace\oneagent\datastorage,logdir=C:/ProgramData/dynatrace/oneagent/log,server=https://sg-eu-west-1-34-254-28-194-prod9-ireland.live.ruxit.com/communication;https://sg-eu-west-1-34-241-59-134-prod9-ireland.live.ruxit.com/communication;https://sg-eu-west-1-52-208-65-189-prod9-ireland.live.ruxit.com/communication;https://sg-eu-west-1-52-17-197-227-prod9-ireland.live.ruxit.com/communication;https://drp47759.live.dynatrace.com:443/communication com.example.demo.RegistryserviceApplication --spring.output.ansi.enabled=always
+
+Host: Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz, 4 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.662)
+Time: Fri Dec 25 20:15:12 2020 Afr. centrale Ouest elapsed time: 4 seconds (0d 0h 0m 4s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002205bda0000):  JavaThread "Unknown thread" [_thread_in_vm, id=20664, stack(0x000000f4c8400000,0x000000f4c8500000)]
+
+Stack: [0x000000f4c8400000,0x000000f4c8500000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x5f8a9a]
+V  [jvm.dll+0x74247a]
+V  [jvm.dll+0x743c2f]
+V  [jvm.dll+0x744273]
+V  [jvm.dll+0x20d288]
+V  [jvm.dll+0x5f5dea]
+V  [jvm.dll+0x5eac45]
+V  [jvm.dll+0x2c7e9c]
+V  [jvm.dll+0x2c7cd2]
+V  [jvm.dll+0x2cdbbc]
+V  [jvm.dll+0x313fe8]
+V  [jvm.dll+0x313710]
+V  [jvm.dll+0x2a092a]
+V  [jvm.dll+0x2a1a79]
+V  [jvm.dll+0x71fd48]
+V  [jvm.dll+0x321c14]
+V  [jvm.dll+0x70112c]
+V  [jvm.dll+0x392def]
+V  [jvm.dll+0x394e61]
+C  [oneagentproc.dll+0x9323]
+C  [oneagentproc.dll+0xdf51]
+C  [jli.dll+0x524b]
+C  [ucrtbase.dll+0x214c2]
+C  [KERNEL32.DLL+0x17034]
+C  [ntdll.dll+0x4d0d1]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ffba65f3038, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000002205bdea000 GCTaskThread "GC Thread#0" [stack: 0x000000f4c8f00000,0x000000f4c9000000] [id=9324]
+  0x000002205bdf1800 ConcurrentGCThread "G1 Main Marker" [stack: 0x000000f4c9000000,0x000000f4c9100000] [id=19304]
+  0x000002205be12000 ConcurrentGCThread "G1 Conc#0" [stack: 0x000000f4c9100000,0x000000f4c9200000] [id=12028]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffba5e21257]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000002205bd81680] Heap_lock - owner thread: 0x000002205bda0000
+
+Heap address: 0x0000000081c00000, size: 2020 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (2 events):
+Event: 3.360 Loaded shared library D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\java.dll
+Event: 3.534 Loaded shared library D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff6af520000 - 0x00007ff6af52d000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\javaw.exe
+0x00007ffbedad0000 - 0x00007ffbedcc6000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffbe32b0000 - 0x00007ffbe32c2000 	C:\Program Files\AVAST Software\Avast\aswhook.dll
+0x00007ffbecc20000 - 0x00007ffbeccdd000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffbeb580000 - 0x00007ffbeb849000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffbeb210000 - 0x00007ffbeb310000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffbe7960000 - 0x00007ffbe7978000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\jli.dll
+0x00007ffbed0a0000 - 0x00007ffbed240000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffbeb470000 - 0x00007ffbeb492000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffbece00000 - 0x00007ffbece2a000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffbeb930000 - 0x00007ffbeba39000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffbeba90000 - 0x00007ffbebb2d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffbe4cb0000 - 0x00007ffbe4cc5000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\VCRUNTIME140.dll
+0x00007ffbd9980000 - 0x00007ffbd9c1b000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.488_none_ca04af081b815d21\COMCTL32.dll
+0x00007ffbebb90000 - 0x00007ffbebc2e000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffbebcf0000 - 0x00007ffbebd20000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffbe9ca0000 - 0x00007ffbe9f01000 	C:\Program Files\dynatrace\oneagent\agent\bin\1.205.163.20201201-130524\windows-x86-64\oneagentproc.dll
+0x00007ffbed6b0000 - 0x00007ffbed75c000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffbed760000 - 0x00007ffbed7fc000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffbece30000 - 0x00007ffbecf5b000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffbd4840000 - 0x00007ffbd48db000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\msvcp140.dll
+0x00007ffba5b70000 - 0x00007ffba668e000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\server\jvm.dll
+0x00007ffbebc30000 - 0x00007ffbebc38000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffbd6e40000 - 0x00007ffbd6e49000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffbec610000 - 0x00007ffbec67b000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffbe0510000 - 0x00007ffbe0537000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffbe10a0000 - 0x00007ffbe10aa000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffbe8f40000 - 0x00007ffbe8f52000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffbe80f0000 - 0x00007ffbe80fa000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\jimage.dll
+0x00007ffbe8c10000 - 0x00007ffbe8df4000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffbe0e10000 - 0x00007ffbe0e3c000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffbeb4a0000 - 0x00007ffbeb520000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffbc8e70000 - 0x00007ffbc95f8000 	C:\PROGRA~1\DYNATR~1\oneagent\agent\bin\120516~1.202\WINDOW~2\oneagentloader.dll
+0x00007ffbebec0000 - 0x00007ffbec602000 	C:\WINDOWS\System32\SHELL32.dll
+0x00007ffbed800000 - 0x00007ffbed92a000 	C:\WINDOWS\System32\ole32.dll
+0x00007ffbec8c0000 - 0x00007ffbecc16000 	C:\WINDOWS\System32\combase.dll
+0x00007ffbebd80000 - 0x00007ffbebe4d000 	C:\WINDOWS\System32\OLEAUT32.dll
+0x00007ffbeb900000 - 0x00007ffbeb927000 	C:\WINDOWS\System32\bcrypt.dll
+0x00007ffbebb30000 - 0x00007ffbebb86000 	C:\WINDOWS\System32\WLDAP32.dll
+0x00007ffbd49f0000 - 0x00007ffbd49fc000 	C:\WINDOWS\SYSTEM32\Secur32.dll
+0x00007ffbea770000 - 0x00007ffbea7bb000 	C:\WINDOWS\SYSTEM32\POWRPROF.dll
+0x00007ffbeb0c0000 - 0x00007ffbeb0fc000 	C:\WINDOWS\SYSTEM32\SSPICLI.DLL
+0x00007ffbea640000 - 0x00007ffbea652000 	C:\WINDOWS\SYSTEM32\UMPDC.dll
+0x00007ffbe9f10000 - 0x00007ffbe9f43000 	C:\WINDOWS\SYSTEM32\ntmarta.dll
+0x00007ffbc4920000 - 0x00007ffbc5a70000 	C:\PROGRA~1\DYNATR~1\oneagent\agent\bin\120516~1.202\WINDOW~2\oneagentjava.dll
+0x00007ffbea660000 - 0x00007ffbea69b000 	C:\WINDOWS\SYSTEM32\IPHLPAPI.DLL
+0x00007ffbeab20000 - 0x00007ffbeab2c000 	C:\WINDOWS\SYSTEM32\CRYPTBASE.DLL
+0x00007ffbd3b60000 - 0x00007ffbd3b77000 	C:\WINDOWS\system32\napinsp.dll
+0x00007ffbcf040000 - 0x00007ffbcf05b000 	C:\WINDOWS\system32\pnrpnsp.dll
+0x00007ffbe5970000 - 0x00007ffbe5985000 	C:\WINDOWS\system32\wshbth.dll
+0x00007ffbe6910000 - 0x00007ffbe692d000 	C:\WINDOWS\system32\NLAapi.dll
+0x00007ffbea9a0000 - 0x00007ffbeaa0a000 	C:\WINDOWS\System32\mswsock.dll
+0x00007ffbea6a0000 - 0x00007ffbea76b000 	C:\WINDOWS\SYSTEM32\DNSAPI.dll
+0x00007ffbebeb0000 - 0x00007ffbebeb8000 	C:\WINDOWS\System32\NSI.dll
+0x00007ffbcf020000 - 0x00007ffbcf032000 	C:\WINDOWS\System32\winrnr.dll
+0x00007ffbe1f90000 - 0x00007ffbe1fa7000 	C:\WINDOWS\SYSTEM32\dhcpcsvc6.DLL
+0x00007ffbe1f70000 - 0x00007ffbe1f8d000 	C:\WINDOWS\SYSTEM32\dhcpcsvc.DLL
+0x00007ffbd4120000 - 0x00007ffbd4145000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\java.dll
+0x00007ffbd4820000 - 0x00007ffbd4836000 	D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin;C:\WINDOWS\SYSTEM32;C:\Program Files\AVAST Software\Avast;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.488_none_ca04af081b815d21;C:\Program Files\dynatrace\oneagent\agent\bin\1.205.163.20201201-130524\windows-x86-64;D:\STS4\spring2\sp\sts-4.8.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932\jre\bin\server;C:\PROGRA~1\DYNATR~1\oneagent\agent\bin\120516~1.202\WINDOW~2
+
+VM Arguments:
+jvm_args: -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=59743 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.jmx.enabled=true -Dspring.application.admin.enabled=true -Xverify:none -XX:TieredStopAtLevel=1 -Dspring.boot.project.name=registryservice -Dfile.encoding=UTF-8 -XX:+ShowCodeDetailsInExceptionMessages -agentpath:C:/PROGRA~1/DYNATR~1/oneagent/agent/bin/120516~1.202/WINDOW~2/oneagentloader.dll=loglevelcon=none,tenant=drp47759,tenanttoken=Bq1PsgNiI3MgzSky,datastorage=C:\ProgramData\dynatrace\oneagent\datastorage,logdir=C:/ProgramData/dynatrace/oneagent/log,server=https://sg-eu-west-1-34-254-28-194-prod9-ireland.live.ruxit.com/communication;https://sg-eu-west-1-34-241-59-134-prod9-ireland.live.ruxit.com/communication;https://sg-eu-west-1-52-208-65-189-prod9-ireland.live.ruxit.com/communication;https://sg-eu-west-1-52-17-197-227-prod9-ireland.live.ruxit.com/communication;https://drp47759.live.dynatrace.com:443/communication 
+java_command: com.example.demo.RegistryserviceApplication --spring.output.ansi.enabled=always
+java_class_path (initial): D:\STS4_spring\ProjetWebWorkspace\registryservice\target\classes;C:\Users\EDS\.m2\repository\org\springframework\cloud\spring-cloud-starter-config\2.2.5.RELEASE\spring-cloud-starter-config-2.2.5.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\cloud\spring-cloud-starter\2.2.5.RELEASE\spring-cloud-starter-2.2.5.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\cloud\spring-cloud-context\2.2.5.RELEASE\spring-cloud-context-2.2.5.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\security\spring-security-crypto\5.3.4.RELEASE\spring-security-crypto-5.3.4.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\cloud\spring-cloud-commons\2.2.5.RELEASE\spring-cloud-commons-2.2.5.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\security\spring-security-rsa\1.0.9.RELEASE\spring-security-rsa-1.0.9.RELEASE.jar;C:\Users\EDS\.m2\repository\org\bouncycastle\bcpkix-jdk15on\1.64\bcpkix-jdk15on-1.64.jar;C:\Users\EDS\.m2\repository\org\bouncycastle\bcprov-jdk15on\1.64\bcprov-jdk15on-1.64.jar;C:\Users\EDS\.m2\repository\org\springframework\cloud\spring-cloud-config-client\2.2.5.RELEASE\spring-cloud-config-client-2.2.5.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.3.4.RELEASE\spring-boot-autoconfigure-2.3.4.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\spring-web\5.2.9.RELEASE\spring-web-5.2.9.RELEASE.jar;C:\Users\EDS\.m2\repository\org\springframework\spring-beans\5.2.9.RELEASE\spring-beans-5.2.9.RELEASE.jar;C:\Users\EDS\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.11.2\jackson-annotations-2.11.2.jar;C:\Users\EDS\.m2\repository\org\apache\httpcomponents\httpclient\4.5.12\httpclient-4.5.12.jar;C:\Users\EDS\.m2\repository\org\apache\httpcomponents\httpcore\4.4.13\httpcore-4.4.13.jar;C:\Users\EDS\.m2\repository\commons-codec\commons-codec\1.14\commons-codec-1.14.jar;C:\Users\EDS\.m2\repository\com\fasterxml\jackson\core\jackson-databind\
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 3                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 1                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 1048576                                   {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 134217728                                 {product} {ergonomic}
+     bool ManagementServer                         = true                                      {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 2118123520                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 1048576                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 6973028                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 244685212                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool ShowCodeDetailsInExceptionMessages       = true                                   {manageable} {command line}
+   size_t SoftMaxHeapSize                          = 2118123520                             {manageable} {ergonomic}
+     intx TieredStopAtLevel                        = 1                                         {product} {command line}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=D:/STS4_spring/sts-4.8.0.RELEASE//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932/jre/bin/server;D:/STS4_spring/sts-4.8.0.RELEASE//plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_14.0.2.v20200815-0932/jre/bin;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files\Java\jre1.8.0_101\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Pinnacle\Shared Files\;C:\Users\EDS\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\EDS\AppData\Local\Microsoft\WindowsApps;C:\Users\EDS\AppData\Local\Programs\Python\Python37;C:\Users\EDS\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\EDS\AppData\Roaming\Composer\vendor\bin;C:\xampp\php;C:\Users\EDS\AppData\Roaming\Composer;C:\xampp\php\pear;C:\xampp\htdocs\test_symfony4\vendor\symfony;C:\xampp2\php\php.exe;C:\xampp2\php;D:\Users\EDS\Downloads;C:\opencv4.1.2\opencv\build\x64\vc14\bin;C:\Users\EDS\dlib-19.18.0\dlib-19.18.0\dlib;C:\MinGW\mingw32\bin;C:\Users\EDS\AppData\Roaming\npm;C:\Program Files\Java\jdk1.8.0_101\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.2\bin;C:\Windows\System32;C:\Program Files\Git\bin;C:\Program Files\JetBrains\WebStorm 2020.2.3\bin;;C:\Program Files\nodejs\;C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Node.js;;D:\STS4_spring\sts-4.8.0.RELEASE;
+USERNAME=EDS
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 142 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.662)
+OS uptime: 8 days 9:30 hours
+HyperV virtualization detected
+
+CPU:total 4 (initial active 4) (2 cores per cpu, 2 threads per core) family 6 model 142 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, fma
+
+Memory: 4k page, system-wide physical 8073M (525M free)
+TotalPageFile size 32649M (AvailPageFile size 52M)
+current process WorkingSet (physical memory assigned to process): 28M, peak: 28M
+current process commit charge ("private bytes"): 60M, peak: 188M
+
+vm_info: OpenJDK 64-Bit Server VM (14.0.2+12-46) for windows-amd64 JRE (14.0.2+12-46), built on Jul  9 2020 00:31:16 by "mach5one" with MS VC++ 15.9 (VS2017)
+
+END.

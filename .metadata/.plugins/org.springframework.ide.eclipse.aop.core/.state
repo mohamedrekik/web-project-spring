@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="proxyservice"/>
+<aop-project name="NewMembre-Service"/>
+<aop-project name="Publication-service"/>
+<aop-project name="registryservice"/>
+<aop-project name="NewconfigServer"/>
+<aop-project name="NewPublication-service"/>
+<aop-project name="outil-service2"/>
+<aop-project name="Newproxyservice"/>
+<aop-project name="Membre-Service"/>
+<aop-project name="Newoutil-service2"/>
+<aop-project name="Evenement-service"/>
+<aop-project name="NewEvenement-service"/>
+<aop-project name="configServer"/>
+<aop-project name="Newregistryservice"/>
+</aop-reference-model>

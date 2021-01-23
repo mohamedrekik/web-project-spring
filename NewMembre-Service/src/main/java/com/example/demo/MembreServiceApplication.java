@@ -1,0 +1,168 @@
+package com.example.demo;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
+import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
+
+import com.example.demo.dao.EtudiantRepository;
+import com.example.demo.dao.MemberRepository;
+import com.example.demo.entities.EnseignantChercheur;
+import com.example.demo.entities.Etudiant;
+import com.example.demo.entities.Membre;
+import com.example.demo.proxies.EvenementProxy;
+import com.example.demo.proxies.OutilProxy;
+import com.example.demo.proxies.PublicationProxy;
+import com.example.demo.service.IMemberService;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+@EnableHypermediaSupport(type = HypermediaType.HAL)//to resolve the pb that feign do not understand json created by data rest
+public class MembreServiceApplication implements CommandLineRunner {
+	@Autowired
+	MemberRepository memberRepository;
+	@Autowired
+	IMemberService iMemberService;
+	@Autowired
+	EtudiantRepository etudiantRepository;
+	@Autowired
+	PublicationProxy publicationProxy;
+	@Autowired
+	OutilProxy outilProxy;
+	@Autowired
+	EvenementProxy evenementProxy;
+
+	
+
+	public static void main(String[] args) {
+		SpringApplication.run(MembreServiceApplication.class, args);
+	}
+
+
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+		// créer deux instances de type membre un enseignant et une autre étudiant
+		//sauvegrader les 2 dans la base de données
+		EnseignantChercheur ens1= new EnseignantChercheur("01752354", "Jmaiel", "Mohamed", new Date(), "https://yscorporate.com/wp-content/uploads/2019/01/Photo-profil-professionnelle-par-photographe-entreprise10.jpg","maitre assistant", "jmaiel@enis.tn", "0000",null,null,null,"Professeur", "ENIS");
+		memberRepository.save(ens1);
+		
+		Membre ens2= new EnseignantChercheur("01752354", "mariam", "lahami", new Date(), "https://smarktic.com/wp-content/uploads/2019/09/MG_2799-photo-profil.jpg","maitre assistant", "lahami@enis.tn", "2222",null,null,null,"MA", "ENIS" );
+		
+		memberRepository.save(ens2);
+		
+		SimpleDateFormat dateFormatter =new SimpleDateFormat("yyyy-MM-dd");
+		Date date1 = dateFormatter.parse("1997-06-18");
+		Date date2 = dateFormatter.parse("1994-05-20");
+		Date date3 = dateFormatter.parse("1995-05-01");
+		Date date4 = dateFormatter.parse("1999-03-14");
+		Date date5 = dateFormatter.parse("1998-03-01");
+		Etudiant etd1= new Etudiant("01231100", "Aydi", " Rim", date1,"https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg","https://www.cdc.gov/polio/stop/pdf/stop-french-cv-template.pdf", "rim.aydi@enis.tn", "11111",null,null,null, new Date(), "test", "these",null);
+		Etudiant etd2= new Etudiant("01531204", "Ghorbel", "Sana", date2, "https://images.pexels.com/photos/38554/girl-people-landscape-sun-38554.jpeg", "https://www.cdc.gov/polio/stop/pdf/stop-french-cv-template.pdf", "sana.ghorbel@enis.tn", "22222",null,null,null, new Date(), "test", "mastere",null);
+		Etudiant etd3= new Etudiant("08145400", "Chaari", "Lina", date3, "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg", "https://www.cdc.gov/polio/stop/pdf/stop-french-cv-template.pdf", "lina.chaari@enis.tn", "33333",null,null,null, new Date(), "test", "these", null);
+		Etudiant etd4= new Etudiant("01814549", "Abid", "Akram", date4, "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg", "https://www.cdc.gov/polio/stop/pdf/stop-french-cv-template.pdf", "akram.abid@enis.tn", "44444",null,null,null,new Date(), "test", "mastre",null);
+		Etudiant etd5= new Etudiant("01814549", "Zekri", "Khalil", date5, "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg","https://www.cdc.gov/polio/stop/pdf/stop-french-cv-template.pdf", "khalil.zekri@enis.tn", "55555",null,null,null, new Date(), "test", "mastre",null);
+
+		
+		memberRepository.save(etd1);
+		memberRepository.save(etd2);
+		memberRepository.save(etd3);
+		memberRepository.save(etd4);
+		memberRepository.save(etd5);
+		
+		// affecter un étduiant à un enseigant
+		iMemberService.affecterencadrantToetudiant(5L, 1L);
+		iMemberService.affecterencadrantToetudiant(6L, 1L);
+		iMemberService.affecterencadrantToetudiant(3L, 1L);
+		
+		// find etudiants encadré par 1
+		
+		List<Etudiant> etds=etudiantRepository.findByEncadrant(ens1);
+		System.out.print(etds.size());
+		
+
+				
+		
+		////****affecter une publication à un auteur
+		
+		//1-récupérer la publication par id en invoquant publication-service
+		PublicationBean pub1=publicationProxy.recupererUnePublication(1L).getContent();
+		System.out.println(pub1.getTitre()+ "  "+pub1.getId());
+		PublicationBean pub2=publicationProxy.recupererUnePublication(2L).getContent();
+		System.out.println(pub2.getTitre()+ "  "+pub2.getId());
+		
+		//2- affecter pub à member
+		iMemberService.affecterauteurTopublication(1L,pub1.getId());
+		iMemberService.affecterauteurTopublication(2L,pub1.getId());
+		iMemberService.affecterauteurTopublication(1L,pub2.getId());
+		
+		//afficher le nombre de publication du membre 1
+		List<PublicationBean> lstpubs=iMemberService.findPublicationparauteur(1L);
+		lstpubs.forEach(r->System.out.println(r.toString()));
+		
+		
+		PublicationBean p=publicationProxy.recupererUnePublication(1L).getContent();
+		System.out.println(p);
+		
+		
+	
+			////****affecter un evenement à un organisateur
+			
+			
+			//1-récupérer l'evenement par id en invoquant evenement-service
+			EvenementBean event1=evenementProxy.recupererUnEvenement(1L).getContent();
+			System.out.println(event1.getTitre() + "  "+ event1.getId()+ ": à "+ event1.getLieu() );
+		
+			EvenementBean event2=evenementProxy.recupererUnEvenement(2L).getContent();
+			System.out.println(event2.getTitre() + "  "+ event2.getId()+ ": à "+ event2.getLieu() );
+		
+			//2- affecter event to member
+			iMemberService.affecterorganisateurToevenement(1L,event1.getId());
+			iMemberService.affecterorganisateurToevenement(2L,event1.getId());
+			iMemberService.affecterorganisateurToevenement(1L,event2.getId());
+			
+			//afficher le nombre des evenements du membre 1
+			List<EvenementBean> lstevents=iMemberService.findEvenementparorganisateur(1L);
+			lstevents.forEach(r->System.out.println(r.toString()));
+			
+			
+			EvenementBean p1=evenementProxy.recupererUnEvenement(1L).getContent();
+			System.out.println(p1);	
+			
+		////****affecter un outil à un auteur
+			
+			
+			//1-récupérer l'outil par id en invoquant outil-service
+				OutilBean outil1=outilProxy.recupererUnOutil(1L).getContent();
+				System.out.println(outil1.getId() + "  "+ outil1.getSource());
+				OutilBean outil2=outilProxy.recupererUnOutil(2L).getContent();
+				System.out.println(outil2.getId() + "  "+ outil2.getSource());
+					
+					//2- affecter outil to member
+				iMemberService.affecterauteurTooutil(1L,outil1.getId());
+				iMemberService.affecterauteurTooutil(2L,outil1.getId());
+				iMemberService.affecterauteurTooutil(1L,outil2.getId());
+					
+					//afficher le nombre de publication du membre 1
+				List<OutilBean> lstoutils=iMemberService.findOutilparauteur(1L);
+				lstoutils.forEach(r->System.out.println(r.toString()));
+					
+					
+				OutilBean p0=outilProxy.recupererUnOutil(1L).getContent();
+				System.out.println(p0);	
+				
+				//
+				/*List<MemberBean> lstmembres=iMemberService.findAuteurparpublication(1L);
+				lstmembres.forEach(r->System.out.println(r.toString()));*/
+				
+	}
+}
